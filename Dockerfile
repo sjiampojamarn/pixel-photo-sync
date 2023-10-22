@@ -23,4 +23,4 @@ RUN apt-get update \
     && chmod +x *.sh
 
 USER 33:33
-CMD ["/bin/sh" "-c" "./pixel-photo-sync.sh"]
+CMD ["/bin/sh", "-c", "./pixel-photo-sync.sh"]
