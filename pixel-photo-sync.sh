@@ -68,7 +68,7 @@ while true; do
   head /files/lostFiles.txt
   tail /files/lostFiles.txt
 
-    wc /files/missingFiles.txt
+  wc /files/missingFiles.txt
   head /files/missingFiles.txt
   tail /files/missingFiles.txt
 
