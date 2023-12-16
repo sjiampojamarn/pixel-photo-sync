@@ -12,8 +12,8 @@ while true; do
   sleep 1m
   
   ## construct files that are already synced to skip.
-  ls -1v /files/PhotosSynced/**/*.* | xargs -n 1 -d '\n' basename > /files/alreadySynced.txt
-  ls -1v /PhotosArchive/**/*.* | xargs -n 1 -d '\n' basename >> /files/alreadySynced.txt
+  find /files/PhotosSynced/ -type f | xargs -n 1 -d '\n' basename > /files/alreadySynced.txt
+  find /PhotosArchive/ -type f | xargs -n 1 -d '\n' basename >> /files/alreadySynced.txt
   echo '*.part' >> /files/alreadySynced.txt
   cp /files/alreadySynced.txt /files/PhotosPending/.stignore
 
@@ -42,11 +42,11 @@ while true; do
   done
   IFS="$OIFS"
 
-  ls -1v /files/PhotosSynced/**/*.* | xargs -n 1 -d '\n' basename > /files/PhotosSynced.txt
-  ls -1v /PhotosArchive/**/*.* | xargs -n 1 -d '\n' basename >> /files/PhotosSynced.txt
+  find /files/PhotosSynced/ -type f | xargs -n 1 -d '\n' basename > /files/PhotosSynced.txt
+  find /PhotosArchive/ -type f | xargs -n 1 -d '\n' basename >> /files/PhotosSynced.txt
 
-  ls -1v /files/PhotosPending/**/*.* | xargs -n 1 -d '\n' basename > /files/PhotosPending.txt
-  ls -1v /files/Photos/**/*.* | xargs -n 1 -d '\n' basename > /files/Photos.txt
+  find /files/PhotosPending/ | xargs -n 1 -d '\n' basename > /files/PhotosPending.txt
+  find /files/Photos/ | xargs -n 1 -d '\n' basename > /files/Photos.txt
 
   sort /files/PhotosSynced.txt > /files/PhotosSynced.txt.sort
   sort /files/PhotosPending.txt > /files/PhotosPending.txt.sort
