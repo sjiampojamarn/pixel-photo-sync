@@ -45,8 +45,8 @@ while true; do
   find /files/PhotosSynced/ -type f | xargs -n 1 -d '\n' basename > /files/PhotosSynced.txt
   find /PhotosArchive/ -type f | xargs -n 1 -d '\n' basename >> /files/PhotosSynced.txt
 
-  find /files/PhotosPending/ | xargs -n 1 -d '\n' basename > /files/PhotosPending.txt
-  find /files/Photos/ | xargs -n 1 -d '\n' basename > /files/Photos.txt
+  find /files/PhotosPending/ -type f | xargs -n 1 -d '\n' basename > /files/PhotosPending.txt
+  find /files/Photos/ -type f | xargs -n 1 -d '\n' basename > /files/Photos.txt
 
   sort /files/PhotosSynced.txt > /files/PhotosSynced.txt.sort
   sort /files/PhotosPending.txt > /files/PhotosPending.txt.sort
