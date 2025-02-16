@@ -34,7 +34,7 @@ while true; do
   do
     echo "Fixing: ${file}" ;
     cp -p "$file" /files/PhotosPending-mov-fix/in.mov ;
-    ffmpeg -hide_banner -loglevel warning -i /files/PhotosPending-mov-fix/in.mov -c copy -map_metadata 0 -map_metadata:s:v 0:s:v -map_metadata:s:a 0:s:a -movflags use_metadata_tags -y /files/PhotosPending-mov-fix/out.mov || cp -ay /files/PhotosPending-mov-fix/in.mov /files/PhotosPending-mov-fix/out.mov ;
+    ffmpeg -hide_banner -loglevel warning -i /files/PhotosPending-mov-fix/in.mov -c copy -map_metadata 0 -map_metadata:s:v 0:s:v -map_metadata:s:a 0:s:a -movflags use_metadata_tags -y /files/PhotosPending-mov-fix/out.mov || cp -af /files/PhotosPending-mov-fix/in.mov /files/PhotosPending-mov-fix/out.mov ;
     chown --reference=/files/PhotosPending-mov-fix/in.mov /files/PhotosPending-mov-fix/out.mov ;
     chmod --reference=/files/PhotosPending-mov-fix/in.mov /files/PhotosPending-mov-fix/out.mov ;
     touch --reference=/files/PhotosPending-mov-fix/in.mov /files/PhotosPending-mov-fix/out.mov ;
