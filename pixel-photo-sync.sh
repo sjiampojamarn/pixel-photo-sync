@@ -22,6 +22,7 @@ while true; do
   while read -r file ; do rm -f "/files/PhotosPending/$file" ; done < /files/alreadySynced.txt
 
   ## sync files from source; ignore those already synced.
+  echo "rsync from Photos to Pending"
   nice rsync -avXAh --progress --delete --delete-excluded --bwlimit=15000 --exclude-from /files/alreadySynced.txt /files/Photos/**/*.* /files/PhotosPending/
 
   ## Some Live photo mov files having problems,
@@ -76,10 +77,12 @@ while true; do
   set +x
 
   ## Move files older than 7 days from Synced to Archive
+  echo "rsync move files older than 7 days from Synced to Archive"
   find /files/PhotosSynced/ -mtime +7 | cut -f4- -d/ |sort > /files/moveToArchive.txt
   rsync -avXAh --progress --remove-source-files --files-from /files/moveToArchive.txt /files/PhotosSynced/ /PhotosArchive/ 
 
   ## doing the same from Photos to Archive
+  echo "rsync move files older than 7 days from Photos to Archive"
   cat /files/alreadySynced.txt | xargs -n 1 -d '\n' find /files/Photos/ -mtime +7 -name |  cut -f4- -d/ | sort > /files/photosMoveToArchive.txt
   rsync -avXAh --progress --remove-source-files --files-from /files/photosMoveToArchive.txt /files/Photos/ /PhotosArchive/
 
