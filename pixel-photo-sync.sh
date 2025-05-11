@@ -8,7 +8,7 @@ shopt -s globstar
 
 while true; do
   date
-  timeout $(($RANDOM % 15))m inotifywait -e modify,create,delete -r /files/Photos 
+  timeout $((RANDOM % 15 + 1))m inotifywait -e modify,create,delete -r /files/Photos 
   echo "Waiting for 1m ..."
   sleep 1m
   
