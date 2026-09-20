@@ -1,5 +1,5 @@
-ARG BUILD_FROM
-FROM ${BUILD_FROM} as BUILD_IMAGE
+ARG BUILD_FROM=ubuntu:latest
+FROM ${BUILD_FROM} AS build_image
 
 ENV DEBCONF_NONINTERACTIVE_SEEN=true \
     DEBIAN_FRONTEND=noninteractive \
@@ -16,7 +16,7 @@ COPY ./*.sh ./
 
 RUN apt-get update \
     && apt-get install -y locales \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+    && localedef -i en_US -c -f UTF-8 en_US.UTF-8 \
     && apt-get install -y inotify-tools rsync ffmpeg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
